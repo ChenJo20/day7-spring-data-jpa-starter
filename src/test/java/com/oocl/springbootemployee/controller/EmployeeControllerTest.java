@@ -79,7 +79,7 @@ class EmployeeControllerTest {
     @Test
     void should_return_employee_when_get_by_id() throws Exception {
         // Given
-        final Employee givenEmployee = employeeInMemoryRepository.findAll().get(0);
+        final Employee givenEmployee = employeeRepository.findAll().get(0);
 
         // When
         // Then
