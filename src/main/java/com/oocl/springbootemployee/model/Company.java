@@ -1,19 +1,19 @@
 package com.oocl.springbootemployee.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Company {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @OneToMany
     private List<Employee> employees = new ArrayList<>();
 
     public Company(Integer id, String name, List<Employee> employees) {

@@ -8,6 +8,8 @@ import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.model.Gender;
 import com.oocl.springbootemployee.repository.EmployeeInMemoryRepository;
 import java.util.List;
+
+import com.oocl.springbootemployee.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +34,23 @@ class EmployeeControllerTest {
     private EmployeeInMemoryRepository employeeInMemoryRepository;
 
     @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
     private JacksonTester<List<Employee>> employeesJacksonTester;
 
     @BeforeEach
     void setUp() {
+        employeeRepository.deleteAll();
+        employeeRepository.save(new Employee(null, "John Smith", 32, Gender.MALE, 5000.0));
+        employeeRepository.save(new Employee(null, "Jane Johnson", 28, Gender.FEMALE, 6000.0));
+        employeeRepository.save(new Employee(null, "Johnson", 32, Gender.MALE, 5000.0));
+        employeeRepository.save(new Employee(null, "Tony", 28, Gender.MALE, 6000.0));
+        employeeRepository.save(new Employee(null, "Emily", 28, Gender.FEMALE, 6000.0));
+        givenDataToInMemoryRepository();
+    }
+
+    private void givenDataToInMemoryRepository() {
         employeeInMemoryRepository.findAll().clear();
         employeeInMemoryRepository.create(new Employee(1, "John Smith", 32, Gender.MALE, 5000.0));
         employeeInMemoryRepository.create(new Employee(2, "Jane Johnson", 28, Gender.FEMALE, 6000.0));
@@ -47,7 +62,7 @@ class EmployeeControllerTest {
     @Test
     void should_return_employees_when_get_all_given_employee_exist() throws Exception {
         //given
-        final List<Employee> givenEmployees = employeeInMemoryRepository.findAll();
+        final List<Employee> givenEmployees = employeeRepository.findAll();
 
         //when
         //then
@@ -81,8 +96,8 @@ class EmployeeControllerTest {
     @Test
     void should_return_employees_when_get_by_gender() throws Exception {
         // Given
-        Employee femaleEmployee = employeeInMemoryRepository.findAll().get(1);
-        Employee femaleEmployee2 = employeeInMemoryRepository.findAll().get(3);
+        Employee femaleEmployee = employeeRepository.findAll().get(1);
+        Employee femaleEmployee2 = employeeRepository.findAll().get(4);
 
         // When
         // Then
@@ -197,7 +212,7 @@ class EmployeeControllerTest {
     @Test
     void should_return_employees_when_get_by_pageable() throws Exception {
         //given
-        final List<Employee> givenEmployees = employeeInMemoryRepository.findAll();
+        final List<Employee> givenEmployees = employeeRepository.findAll().subList(2, 4);
 
         //when
         //then
