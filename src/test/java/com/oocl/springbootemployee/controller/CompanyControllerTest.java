@@ -175,17 +175,17 @@ class CompanyControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(nameToUpdate));
     }
 
-//    @Test
-//    void should_return_no_content_when_delete() throws Exception {
-//        // Given
-//        var toDeleteCompanyId = nexus_industries.getId();
-//
-//        // When
-//        final var result =
-//            client.perform(MockMvcRequestBuilders.delete("/companies/" + toDeleteCompanyId)).andReturn();
-//
-//        // Then
-//        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.NO_CONTENT.value());
-//        assertThat(companyRepository.findAll()).hasSize(4);
-//    }
+    @Test
+    void should_return_no_content_when_delete() throws Exception {
+        // Given
+        var toDeleteCompanyId = nexus_industries.getId();
+
+        // When
+        final var result =
+            client.perform(MockMvcRequestBuilders.delete("/companies/" + toDeleteCompanyId)).andReturn();
+
+        // Then
+        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.NO_CONTENT.value());
+        assertThat(companyRepository.findAll()).hasSize(4);
+    }
 }
