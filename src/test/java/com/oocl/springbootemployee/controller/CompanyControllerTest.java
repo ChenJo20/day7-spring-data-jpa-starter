@@ -124,20 +124,20 @@ class CompanyControllerTest {
         assertThat(fetchedEmployees.stream().map(Employee::getId).toList())
             .containsAll(List.of(john_smith.getId(),jane_johnson.getId()));
     }
-//
-//    @Test
-//    void should_return_company_when_get_by_id() throws Exception {
-//        // Given
-//
-//        final var companyGiven = companyRepository.findAll().get(0);
-//
-//        // When
-//        // Then
-//        client.perform(MockMvcRequestBuilders.get("/companies/" + companyGiven.getId()))
-//            .andExpect(MockMvcResultMatchers.status().isOk())
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(companyGiven.getId()))
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(companyGiven.getName()));
-//    }
+
+    @Test
+    void should_return_company_when_get_by_id() throws Exception {
+        // Given
+
+        final var companyGiven = companyRepository.findAll().get(0);
+
+        // When
+        // Then
+        client.perform(MockMvcRequestBuilders.get("/companies/" + companyGiven.getId()))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(companyGiven.getId()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(companyGiven.getName()));
+    }
 //
 //    @Test
 //    void should_return_created_company() throws Exception {
