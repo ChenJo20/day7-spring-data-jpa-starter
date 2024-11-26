@@ -4,6 +4,7 @@ import com.oocl.springbootemployee.model.Company;
 import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.repository.CompanyInMemoryRepository;
 import com.oocl.springbootemployee.repository.CompanyRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +24,7 @@ public class CompanyService {
     }
 
     public List<Company> findAll(int pageIndex, int pageSize) {
-        List<Company> companiesInPage = companyInMemoryRepository.getCompaniesByPagination(pageIndex, pageSize);
-        return companiesInPage.stream().toList();
+        return companyRepository.findAll(PageRequest.of(pageIndex, pageSize)).getContent();
     }
 
     public Company findById(Integer id) {
