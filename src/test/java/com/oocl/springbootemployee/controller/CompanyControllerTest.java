@@ -23,6 +23,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @SpringBootTest
 @AutoConfigureJsonTesters
@@ -156,24 +157,24 @@ class CompanyControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(givenName));
     }
 
-//    @Test
-//    void should_return_updated_company_when_update_with_id_and_data() throws Exception {
-//        // Given
-//        var idToUpdate = techcom_solutions.getId();
-//        var nameToUpdate = "New Name";
-//        String requestBody = String.format("{\"name\": \"%s\" }", nameToUpdate);
-//
-//        // When
-//        // Then
-//        client.perform(MockMvcRequestBuilders.put("/companies/" + idToUpdate)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(requestBody))
-//            .andExpect(MockMvcResultMatchers.status().isOk())
-//            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(idToUpdate))
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(nameToUpdate));
-//    }
-//
+    @Test
+    void should_return_updated_company_when_update_with_id_and_data() throws Exception {
+        // Given
+        var idToUpdate = techcom_solutions.getId();
+        var nameToUpdate = "New Name";
+        String requestBody = String.format("{\"name\": \"%s\" }", nameToUpdate);
+
+        // When
+        // Then
+        client.perform(MockMvcRequestBuilders.put("/companies/" + idToUpdate)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(idToUpdate))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(nameToUpdate));
+    }
+
 //    @Test
 //    void should_return_no_content_when_delete() throws Exception {
 //        // Given
