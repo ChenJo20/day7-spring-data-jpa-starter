@@ -138,24 +138,24 @@ class CompanyControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(companyGiven.getId()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(companyGiven.getName()));
     }
-//
-//    @Test
-//    void should_return_created_company() throws Exception {
-//        //Given
-//        var givenName = "New Company";
-//        String requestBody = String.format("{\"name\": \"%s\" }", givenName);
-//
-//        // When
-//        // Then
-//        client.perform(
-//                MockMvcRequestBuilders.post("/companies")
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .content(requestBody))
-//            .andExpect(MockMvcResultMatchers.status().isCreated())
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(givenName));
-//    }
-//
+
+    @Test
+    void should_return_created_company() throws Exception {
+        //Given
+        var givenName = "New Company";
+        String requestBody = String.format("{\"name\": \"%s\" }", givenName);
+
+        // When
+        // Then
+        client.perform(
+                MockMvcRequestBuilders.post("/companies")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(requestBody))
+            .andExpect(MockMvcResultMatchers.status().isCreated())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(givenName));
+    }
+
 //    @Test
 //    void should_return_updated_company_when_update_with_id_and_data() throws Exception {
 //        // Given
