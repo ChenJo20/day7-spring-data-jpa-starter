@@ -1,9 +1,17 @@
 package com.oocl.springbootemployee.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private List<Employee> employees = new ArrayList<>();
@@ -19,7 +27,8 @@ public class Company {
         this.name = name;
     }
 
-    public Company() {}
+    public Company() {
+    }
 
     public Company(String name) {
         this.name = name;
