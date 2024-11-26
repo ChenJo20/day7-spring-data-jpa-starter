@@ -19,7 +19,7 @@ public class CompanyService {
     }
 
     public List<Company> findAll(){
-        return companyInMemoryRepository.findAll();
+        return companyRepository.findAll();
     }
 
     public List<Company> findAll(int pageIndex, int pageSize) {
