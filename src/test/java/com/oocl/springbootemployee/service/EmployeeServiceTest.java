@@ -35,7 +35,7 @@ class EmployeeServiceTest {
     void should_return_the_given_employees_when_getAllEmployees() {
         //given
         final EmployeeService employeeService = buildEmployeeService();
-        when(mockedEmployeeInMemoryRepository.findAll()).thenReturn(List.of(new Employee(1, "Lucy", 18, Gender.FEMALE, 8000.0)));
+        when(mockedEmployeeRepository.findAll()).thenReturn(List.of(new Employee(1, "Lucy", 18, Gender.FEMALE, 8000.0)));
 
         //when
         List<Employee> allEmployees = employeeService.findAll();
