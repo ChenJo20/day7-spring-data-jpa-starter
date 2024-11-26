@@ -212,12 +212,12 @@ class EmployeeControllerTest {
     @Test
     void should_return_employees_when_get_by_pageable() throws Exception {
         //given
-        final List<Employee> givenEmployees = employeeRepository.findAll().subList(2, 4);
+        final List<Employee> givenEmployees = employeeRepository.findAll();
 
         //when
         //then
         client.perform(MockMvcRequestBuilders.get("/employees")
-                .param("pageIndex", "2")
+                .param("pageIndex", "1")
                 .param("pageSize", "2"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)))
