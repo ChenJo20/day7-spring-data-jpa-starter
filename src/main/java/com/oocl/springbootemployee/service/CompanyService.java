@@ -33,7 +33,7 @@ public class CompanyService {
 
 
     public List<Employee> getEmployeesByCompanyId(Integer id) {
-        Company company = companyInMemoryRepository.findById(id);
+        Company company = companyRepository.findById(id).get();
         return company.getEmployees();
     }
 

@@ -104,26 +104,26 @@ class CompanyControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(the5thEmployeeCompanyInPage3.get().getId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(the5thEmployeeCompanyInPage3.get().getName()));
     }
-//
-//    @Test
-//    void should_return_employees_when_get_employees_under_the_company() throws Exception {
-//        // Given
-//        var givenCompanyId = acme_corporation.getId() ;
-//
-//        // When
-//        final var result =
-//            client.perform(MockMvcRequestBuilders.get("/companies/" + givenCompanyId + "/employees")).andReturn();
-//
-//        // Then
-//        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-//        assertThat(result.getResponse().getContentType()).isEqualTo(MediaType.APPLICATION_JSON.toString());
-//        final List<Employee> fetchedEmployees =
-//            employeeListJacksonTester.parseObject(result.getResponse().getContentAsString());
-//
-//        assertThat(fetchedEmployees).hasSize(2);
-//        assertThat(fetchedEmployees.stream().map(Employee::getId).toList())
-//            .containsAll(List.of(john_smith.getId(),jane_johnson.getId()));
-//    }
+
+    @Test
+    void should_return_employees_when_get_employees_under_the_company() throws Exception {
+        // Given
+        var givenCompanyId = acme_corporation.getId() ;
+
+        // When
+        final var result =
+            client.perform(MockMvcRequestBuilders.get("/companies/" + givenCompanyId + "/employees")).andReturn();
+
+        // Then
+        assertThat(result.getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(result.getResponse().getContentType()).isEqualTo(MediaType.APPLICATION_JSON.toString());
+        final List<Employee> fetchedEmployees =
+            employeeListJacksonTester.parseObject(result.getResponse().getContentAsString());
+
+        assertThat(fetchedEmployees).hasSize(2);
+        assertThat(fetchedEmployees.stream().map(Employee::getId).toList())
+            .containsAll(List.of(john_smith.getId(),jane_johnson.getId()));
+    }
 //
 //    @Test
 //    void should_return_company_when_get_by_id() throws Exception {
