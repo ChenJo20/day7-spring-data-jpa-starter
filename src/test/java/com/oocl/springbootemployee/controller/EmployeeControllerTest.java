@@ -183,7 +183,7 @@ class EmployeeControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.age").value(givenAge))
             .andExpect(MockMvcResultMatchers.jsonPath("$.gender").value(givenGender.name()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.salary").value(givenSalary));
-        List<Employee> employees = employeeInMemoryRepository.findAll();
+        List<Employee> employees = employeeRepository.findAll();
         assertThat(employees).hasSize(5);
         assertThat(employees.get(0).getId()).isEqualTo(1);
         assertThat(employees.get(0).getName()).isEqualTo(givenName);
